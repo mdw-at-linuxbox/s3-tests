@@ -4485,6 +4485,7 @@ def _create_connection_bad_auth(aws_access_key_id='badauth'):
         host=main.host,
         calling_format=main.calling_format,
         )
+    conn._auth_handler.region_name = "default"
     return conn
 
 @attr(resource='bucket')
@@ -5507,6 +5508,7 @@ def _test_atomic_read(file_size):
         host=s3['main'].host,
         calling_format=s3['main'].calling_format,
         )
+    read_conn._auth_handler.region_name = "default"
 
     read_bucket = read_conn.get_bucket(bucket.name)
     read_key = read_bucket.get_key('testobj')

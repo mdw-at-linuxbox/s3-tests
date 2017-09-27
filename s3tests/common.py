@@ -110,6 +110,7 @@ def connect(conf):
                 )
     # TODO test vhost calling format
     conn = boto.s3.connection.S3Connection(**kwargs)
+    conn._auth_handler.region_name = "default"
     return conn
 
 def setup():

@@ -103,6 +103,7 @@ def setup():
                 host=s3[conn].host,
                 calling_format=s3[conn].calling_format
                 )
+            header_conn._auth_handler.region_name = "default"
 
             s3[conn] = header_conn
     elif hasattr(boto.connection.HTTPRequest, 'authorize'):
@@ -570,6 +571,7 @@ def _create_new_connection():
         host=main.host,
         calling_format=main.calling_format,
         )
+    conn._auth_handler.region_name = "default"
     return TargetConnection(targets.main.default.conf, conn)
 
 @tag('auth_common')
